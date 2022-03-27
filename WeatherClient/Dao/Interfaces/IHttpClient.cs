@@ -8,6 +8,6 @@ namespace WeatherClient.Dao.Interfaces
 {
     interface IHttpClient
     {
-        Task<string> Get(string address);
+        Task<T> Get<T>(string address);
     }
 }
