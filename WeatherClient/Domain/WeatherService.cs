@@ -20,7 +20,7 @@ namespace WeatherClient.Domain
         {
             var weather = await httpClient.Get<CityWeather>($"date/{targetDay.ToString(@"dd.MM.yyyy", new CultureInfo(@"ru-RU"))}/city/{city}");
 
-            return weather?.WeatherByDays.LastOrDefault(x => x.Date.Day == targetDay.Day) ?? new DayWeather();
+            return weather?.WeatherByDays.LastOrDefault(x => x.Date.Day == targetDay.Day);
         }
     }
 }

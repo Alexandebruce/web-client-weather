@@ -6,6 +6,6 @@ namespace WeatherClient.Domain.Interfaces
 {
     public interface IWeatherService
     {
-        Task<CityWeather> GetWeather(DateTime targetDay, string city);
+        Task<DayWeather> GetWeather(DateTime targetDay, string city);
     }
 }
