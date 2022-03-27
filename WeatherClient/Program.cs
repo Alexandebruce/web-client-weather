@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ServiceModel;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace WeatherClient
 {
@@ -17,7 +19,21 @@ namespace WeatherClient
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            var services = new ServiceCollection();
+
+            ConfigureServices(services);
+
+            using (ServiceProvider serviceProvider = services.BuildServiceProvider())
+            {
+                var mainForm = serviceProvider.GetRequiredService<MainForm>();
+                Application.Run(mainForm);
+            }
+        }
+
+        private static void ConfigureServices(ServiceCollection services)
+        {
+            services.AddScoped<MainForm>();
         }
     }
 }
