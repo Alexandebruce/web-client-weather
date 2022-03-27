@@ -19,7 +19,16 @@ namespace WeatherClient
         {
             var date = dateTimePicker.Value;
             var city = textBox.Text;
-            var weather = await weatherService.GetWeather(date, city);
+            Models.DayWeather weather = null;
+            try
+            {
+                weather = await weatherService.GetWeather(date, city);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                richTextBox.Text = "Нет данных";
+            }            
 
             if (weather == null)
             {

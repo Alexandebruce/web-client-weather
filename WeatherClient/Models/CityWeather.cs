@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GrabberService.Models
+namespace WeatherClient.Models
 {
     public class CityWeather
     {

@@ -1,4 +1,4 @@
-﻿using GrabberService.Models;
+﻿using WeatherClient.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
