@@ -34,6 +34,7 @@ namespace WeatherClient
         private static void ConfigureServices(ServiceCollection services)
         {
             services.AddScoped<MainForm>();
+            services.AddHttpClient();
         }
     }
 }
