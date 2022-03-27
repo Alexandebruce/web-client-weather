@@ -12,6 +12,7 @@ namespace GrabberService.Models
 
     public class DayWeather
     {
+        public DateTime Date { get; set; }
         public DailyTemperature TemperatureC { get; set; }
         public string WeatherDescription { get; set; }
         public string WindSpeed { get; set; }

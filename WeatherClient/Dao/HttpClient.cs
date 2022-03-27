@@ -17,7 +17,7 @@ namespace WeatherClient.Dao
 
         public async Task<T> Get<T>(string address)
         {
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, $"{mainPageAddress}{address}");
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, $"{mainPageAddress}/{address}");
 
             var httpClient = httpClientFactory.CreateClient();
             var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
@@ -27,7 +27,12 @@ namespace WeatherClient.Dao
                 using var contentStream =
                     await httpResponseMessage.Content.ReadAsStreamAsync();
 
-                return await JsonSerializer.DeserializeAsync<T>(contentStream);
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                };
+
+                return await JsonSerializer.DeserializeAsync<T>(contentStream, options);
             }
 
             return default(T);

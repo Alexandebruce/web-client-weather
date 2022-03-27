@@ -1,8 +1,10 @@
 ﻿using GrabberService.Models;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using WeatherClient.Dao.Interfaces;
 using WeatherClient.Domain.Interfaces;
+using System.Globalization;
 
 namespace WeatherClient.Domain
 {
@@ -14,11 +16,11 @@ namespace WeatherClient.Domain
             this.httpClient = httpClient;
         }
 
-        public async Task<CityWeather> GetWeather(DateTime targetDay, string city)
+        public async Task<DayWeather> GetWeather(DateTime targetDay, string city)
         {
-            var weather = await httpClient.Get<CityWeather>(string.Empty);
+            var weather = await httpClient.Get<CityWeather>($"date/{targetDay.ToString(@"dd.MM.yyyy", new CultureInfo(@"ru-RU"))}/city/{city}");
 
-            return null;
+            return weather?.WeatherByDays.LastOrDefault(x => x.Date.Day == targetDay.Day) ?? new DayWeather();
         }
     }
 }
