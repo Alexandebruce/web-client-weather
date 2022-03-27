@@ -1,10 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.ServiceModel;
 using Microsoft.Extensions.DependencyInjection;
+using WeatherClient.Domain.Interfaces;
+using System.Net.Http;
+using WeatherClient.Domain;
 
 namespace WeatherClient
 {
@@ -33,8 +32,10 @@ namespace WeatherClient
 
         private static void ConfigureServices(ServiceCollection services)
         {
-            services.AddScoped<MainForm>();
             services.AddHttpClient();
+            services.AddTransient<Dao.Interfaces.IHttpClient>(provider => new Dao.HttpClient(provider.GetService<IHttpClientFactory>()));
+            services.AddTransient<IWeatherService>(provider => new WeatherService(provider.GetService<Dao.Interfaces.IHttpClient>()));
+            services.AddSingleton<MainForm>();
         }
     }
 }
