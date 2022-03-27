@@ -18,7 +18,7 @@ namespace WeatherClient
         private async void button_Click(object sender, EventArgs e)
         {
             var date = dateTimePicker.Value;
-            var city = "Москва";
+            var city = textBox.Text;
             var weather = await weatherService.GetWeather(date, city);
 
             if (weather == null)

@@ -32,6 +32,8 @@ namespace WeatherClient
             this.button = new System.Windows.Forms.Button();
             this.richTextBox = new System.Windows.Forms.RichTextBox();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.textBox = new System.Windows.Forms.TextBox();
+            this.label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button
@@ -59,17 +61,36 @@ namespace WeatherClient
             this.dateTimePicker.Size = new System.Drawing.Size(200, 23);
             this.dateTimePicker.TabIndex = 2;
             // 
+            // textBox
+            // 
+            this.textBox.Location = new System.Drawing.Point(12, 107);
+            this.textBox.Name = "textBox";
+            this.textBox.Size = new System.Drawing.Size(186, 23);
+            this.textBox.TabIndex = 3;
+            // 
+            // label
+            // 
+            this.label.AutoSize = true;
+            this.label.Location = new System.Drawing.Point(12, 89);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(28, 15);
+            this.label.TabIndex = 4;
+            this.label.Text = "City";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label);
+            this.Controls.Add(this.textBox);
             this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.richTextBox);
             this.Controls.Add(this.button);
             this.Name = "MainForm";
             this.Text = "Weather";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -78,6 +99,8 @@ namespace WeatherClient
         private System.Windows.Forms.Button button;
         private System.Windows.Forms.RichTextBox richTextBox;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.Label label;
     }
 }
 
